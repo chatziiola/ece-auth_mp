@@ -1,0 +1,10 @@
+#+TITLE: MicroProcessors Labs
+#+DESCRIPTION: Solutions to exercises of ECE MP course
+#+AUTHOR: Lamprinos Chatziioannou
+#+FILETAGS:
+
+* Lab1
+# Ζητείται και report
+
+
+ 

@@ -1,0 +1,94 @@
+#+TITLE: Εργαστήριο 1
+#+DESCRIPTION: description
+#+AUTHOR: Λαμπρινός Χατζηιωάννου, Γιώργος Σελιβάνωφ
+#+FILETAGS:
+
+* Ζητούμενα                                                                               :noexport:
+#+begin_comment
+H παράδοση την εργασίας θα γίνει μέσω του elearning και τα παραδοτέα
+της εργασίας θα είναι α) ένα αρχείο με τον κώδικα σας και σχόλια (το
+οποίο θα μπορούμε να τρέξουμε και εμείς στο Keil) και β) μια 2σέλιδη
+αναφορά που θα περιγράφετε τι κάνατε, ποια προβλήματα αντιμετωπίσατε
+και πως κάνατε testing.
+#+end_comment
+
+- [ ] αρχείο κώδικα
+- [ ] Δισέλιδη αναφορά
+
+Πιο συγκεκριμένα ζητείται:
+1. Μια βασική ρουτίνα main σε γλώσσα C στην οποία με δυναμικό τρόπο θα
+   παρέχετε το αλφαριθμητικό που θα ελεγχθεί με τη χρήση της UART
+2. Μία ρουτίνα σε assembly που θα υπολογίζει το hash του
+   αλφαριθμητικού, θα αποθηκεύει την τιμή του σε μια θέση μνήμης και
+   θα την επιστρέφει στην main
+3. Μία ρουτίνα σε assembly που θα υπολογίζει το μονοψήφιο από το hash
+   και στη συνέχεια το sum_of_natural_numbers, ενώ στη συνέχεια θα
+   αποθηκεύει την τιμή του σε μια θέση μνήμης και θα την επιστρέφει
+   στην main
+4. Να εκτυπώσετε, με τη χρήση της printf(), τα αποτελέσματα με
+   διαφορετικές εισόδους στο πρόγραμμά σας οι οποίες βασίζονται σε
+   διάφορους συνδυασμούς.
+* Εισαγωγή
+
+* Main C Function
+
+* Hashing Function
+#+NAME: Hash Function Guide in C
+#+begin_src c
+int hashfunc(char inputString[]) {
+#if defined(DEBUG)
+  printf("\tStarting hashfunc with %s\n", inputString);
+#endif
+  // Verified proper length
+  int values[] = {10, 42, 12, 21, 7, 5,  67, 48, 69, 2, 36, 3,  19,
+		  1,  14, 51, 71, 8, 26, 54, 75, 15, 6, 59, 13, 25};
+  int hash = 0;
+  
+  for (int ind = 0; inputString[ind]!='\0'; ind++) {
+    // ASCII:
+    // - Caps: 64-91 (non-inclusive ranges here)
+    // - Lower: 96 - 123 (non-inclusive)
+    // - Digits: 47-58 (non-inclusive)
+#if defined(DEBUG)
+    printf("\tAt char \'%c\', ascii %d\n", inputString[ind], inputString[ind]);
+#endif
+    if (inputString[ind] > 64 && inputString[ind] < 91) {
+      // Meaning caps
+      hash += values[inputString[ind] - 65];
+#if defined(DEBUG)
+      printf("\t\tAdding %d (%d)\n",
+	     values[inputString[ind] - 65],
+	     inputString[ind] - 65);
+#endif
+    } else if (inputString[ind] > 96 && inputString[ind] < 123) {
+      // Meaning lowercase
+      hash -= values[inputString[ind] - 97];
+#if defined(DEBUG)
+      printf("\t\tSubtracting %d (%d)\n",
+	     values[inputString[ind] - 97],
+	     inputString[ind] - 97);
+#endif
+    } else if (inputString[ind] > 47 && inputString[ind] < 58) {
+      // Meaning integer
+      hash += inputString[ind] - 48;
+#if defined(DEBUG)
+      printf("\t\tAdding %d (int)\n",
+	     inputString[ind] - 48);
+#endif
+    }
+  }
+  return hash;
+}
+
+#+end_src
+
+* Sum of Natural Numbers
+#+NAME: Sum_of_natural_numbers as given
+#+begin_src C
+int sum_of_natural_numbers(int n) { int result = 0; if(n > 0) { result
+= n + sum_of_natural_numbers(n-1); } return result; }
+#+end_src
+
+$
+
+* 
