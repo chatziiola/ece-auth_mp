@@ -1,0 +1,9 @@
+#+TITLE: Understanding Assembly Integration
+#+DESCRIPTION: How to include assembly snippets within a uvision project
+#+AUTHOR: Lamprinos Chatziioannou
+#+FILETAGS:
+
+* Resources
+- https://gcc.gnu.org/onlinedocs/gcc/Using-Assembly-Language-with-C.html#Using-Assembly-Language-with-C
+- [[file:arm_compiler-v6.pdf][Compiler V6]]
+
