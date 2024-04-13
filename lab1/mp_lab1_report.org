@@ -1,8 +1,20 @@
 #+TITLE: Εργαστήριο 1
 #+DESCRIPTION: description
-#+AUTHOR: Λαμπρινός Χατζηιωάννου, Γιώργος Σελιβάνωφ
+#+AUTHOR: Γιώργος Σελιβάνωφ, Λαμπρινός Χατζηιωάννου
 #+FILETAGS:
 
+* Tasklist                                                                                :noexport:
+** TODO Δες διαφάνειες παραδειγμάτων assembly - άρχισε prefaces
+** TODO Φτιάξε το array
+** TODO Φτιάξε τα conditions
+- Στην αρχή  και να δουλεύει χαρακτήρα με χαρακτήρα καλό είναι
+** TODO Φτιάξε το loop
+- Goals
+** TODO check uart
+** TODO create rar and send
+- Αυτό είναι must, για να μην γίνει καμία μλκ και χάσουμε ότι δουλειά
+  έγινε.
+  
 * Ζητούμενα                                                                               :noexport:
 #+begin_comment
 H παράδοση την εργασίας θα γίνει μέσω του elearning και τα παραδοτέα
@@ -31,6 +43,9 @@ H παράδοση την εργασίας θα γίνει μέσω του elear
 * Εισαγωγή
 
 * Main C Function
+- Θέλουμε να την κάνουμε να δέχεται input
+- Να δοκιμάζει το input βάσει των συναρτήσεων μας
+- Να δείχνει output
 
 * Hashing Function
 #+NAME: Hash Function Guide in C
