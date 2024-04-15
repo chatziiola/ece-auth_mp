@@ -20,9 +20,12 @@ digital_root:
 	ldr r1,  reciprocal     // Loading the reciprocal into r1
 	mov r2, #0              // Initialize r2 (result) to 0
 	
-	cmp r0, #0              // If the input is 0, return 0
-	beq end
-	                        // Division By 9
+	cmp r0, #0             
+	beq end                 // If the input is 0, return 0
+		
+	bgt div9
+	rsb r0, r0, #0          // Convert negative number to positive
+div9:
 	umull r3, r2, r1, r0    // Multiply with the reciprocal
 	lsr r2, r2, #1          // Left shift on the lower 32 bits, the result requals r0 / 9
 	
