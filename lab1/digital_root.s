@@ -2,6 +2,9 @@
 // Author: Georgios Selivanof
 // Description: For Lab1: MP
 
+// More information about the calucation of the reciprocal: 
+// Division by Invariant Integers using Multiplication by Torbjorn Granlund, Peter L. Montgomery (https://gmplib.org/%7Etege/divcnst-pldi94.pdf)
+
 .global digital_root
 .p2align 2
 
