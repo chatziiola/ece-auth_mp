@@ -2,61 +2,81 @@
 // Author: Lamprinos Chatziioannou
 // Description: For Lab1: MP
 
-.section .text
-.align 2
-.global hashfunc
-.type hashfunc, %function
-
-hashfunc:
-    // @ Function prologue
-    push {r4, lr}     // @ Save r4 and lr on the stack
-
-    // @ Load constants
-    ldr r3, =values
-    mov r2, #0         // @ Initialize hash to 0
-
-// @ Loop through inputString
-loop:
-    ldrb r4, [r0], #1 // @ Load a character from inputString and increment the pointer
-    cmp r4, #0        // @ Check for null terminator
-    beq end           // @ If null terminator, exit loop
-
-    // @ Check character type
-    cmp r4, #'A'
-    blt check_digit	
-    cmp r4, #'Z'
-    bgt check_lowercase
-    // @ If uppercase letter
-    sub r4, r4, #'A' // @ Convert to index
-    ldr r1, [r3, r4, lsl #2] // @ Load corresponding value
-    add r2, r2, r1    // @ Add to hash
-    b loop
-
-check_lowercase:
-    // cmp r4, #'a'
-    // blt check_digit
-    cmp r4, #'z'
-    bgt loop
-    // @ If lowercase letter
-    sub r4, r4, #'a' // @ Convert to index
-    ldr r1, [r3, r4, lsl #2] // @ Load corresponding value
-    sub r2, r2, r1    // @ Subtract from hash
-    b loop
-
-check_digit:
-    cmp r4, #'0'
-    blt loop
-    cmp r4, #'9'
-    bgt loop
-    // @ If digit
-    sub r4, r4, #'0' // @ Convert to integer
-    add r2, r2, r4    // @ Add to hash
-    b loop
-
-end:
-    // @ Function epilogue
-    pop {r4, pc}      // @ Restore r4 and return
-
+	.global gmtstanio
+	.p2align 2
+	
+	.section .data
 values:
-    .word 10, 42, 12, 21, 7, 5,  67, 48, 69, 2, 36, 3,  19,
-          1,  14, 51, 71, 8, 26, 54, 75, 15, 6, 59, 13, 25
+	.byte 10,42,12,21,7,5,67,48,69,2,36,3,19,1,14,51,71,8,26,54,75,15,6,59,13,25
+	
+	.section .text
+	.type gmtstanio,%function	
+	
+	
+// In this asm file I perform extensive usage of labels, mainly for readability.
+// By no means could this be considered optimized nor best practice
+
+gmtstanio: 
+	.fnstart
+	push {r4,lr}  // freeing r4 to use later on
+	// using registers:
+	// r0: address of input string
+	// r1: current character
+	// r2: --- no usage - should make it the hash
+	// r3: memory address of  values
+	// r4: hash
+	//add r0, r0, r1
+	mov r4, #0 // Setting initial value of 0 for the hash
+	ldr r3, =values
+	
+loop:
+	// Load the latest value and increment r0 to point to next char
+	ldrb r1, [r0], #1
+	cmp r1, #0
+	beq end  // break from loop if the null terminator is found
+	
+	// If less than A, possibly a digit
+	cmp r1, #'A'
+	blt check_digit
+	
+	// If more than Z, possibly a lowercase
+	cmp r1, #'Z'
+	bgt check_lowercase
+	
+	// Convert to index
+	sub r1, r1, #'A'
+	ldrb r2, [r3, r1]
+	add r4,r4,r2
+	
+	b loop
+	
+check_lowercase:
+	// Ensuring that we're in the proper range
+	cmp r1, #'a'
+	blt loop
+	cmp r1, #'z'
+	bgt loop
+	
+	// Convert to index
+	sub r1, r1, #'a'
+	ldrb r2, [r3, r1]
+	sub r4, r4,r2
+	
+	b loop
+	
+check_digit:
+	// Ensuring proper range
+	cmp r1, #'0'
+	blt loop
+	cmp r1, #'9'
+	bgt loop
+	
+	// Convert to index
+	sub r1, r1, #'0'
+	add r4, r4, r1	
+	b loop
+end:
+	mov r0, r4
+	pop {r4,pc}
+	.fnend
+
