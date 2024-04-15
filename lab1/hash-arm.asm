@@ -2,7 +2,7 @@
 // Author: Lamprinos Chatziioannou
 // Description: For Lab1: MP
 
-	.global gmtstanio
+	.global hashfunc
 	.p2align 2
 	
 	.section .data
@@ -10,13 +10,13 @@ values:
 	.byte 10,42,12,21,7,5,67,48,69,2,36,3,19,1,14,51,71,8,26,54,75,15,6,59,13,25
 	
 	.section .text
-	.type gmtstanio,%function	
+	.type hashfunc,%function	
 	
 	
 // In this asm file I perform extensive usage of labels, mainly for readability.
 // By no means could this be considered optimized nor best practice
 
-gmtstanio: 
+hashfunc: 
 	.fnstart
 	push {r4,lr}  // freeing r4 to use later on
 	// using registers:
