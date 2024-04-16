@@ -23,13 +23,9 @@ void uart_rx_isr(uint8_t rx) {
 	}
 }
 
-
-
-int main() {
-		
+const char* get_uart_input(char* buff) {
 	// Variables to help with UART read
 	uint8_t rx_char = 0;
-	char buff[BUFF_SIZE]; // The UART read string will be stored here
 	uint32_t buff_index;
 	
 	// Initialize the receive queue and UART
@@ -72,12 +68,30 @@ int main() {
 	if (buff_index > BUFF_SIZE) {
 		uart_print("Stop trying to overflow my buffer! I resent that!\r\n");
 	}
+	return buff;
+}
 
-	printf("Received input %s", buff);
-	int hash_result = hashfunc(buff);
-	printf("Hash output: %d", hash_result);
+
+void print_result(const char* label, int result) {
+    char output[BUFF_SIZE * 2];
+    sprintf(output, "%s: %d\r\n", label, result);
+    uart_print(output);
+    printf("%s", output);	
+}
+
+int main() {
+	// UART Input
+	char input[BUFF_SIZE];
+	get_uart_input(input);
+	
+	printf("Received input %s \n", input);
+	// Hashing
+	int hash_result = hashfunc(input);
+	print_result("Hash", hash_result);
+	// Digital Root
 	int digital_root_result = digital_root(hash_result);
-	printf("Digital Root: %d", digital_root_result);
+	print_result("Digital Root", digital_root_result);
+	// Sum of Natural Numbers
 	int sum_of_int_result = sum_of_natural_numbers(digital_root_result);
-	printf("Sum of natural numbers: %d", sum_of_int_result);	
+	print_result("Sum of Natural Numbers", sum_of_int_result);
 }
