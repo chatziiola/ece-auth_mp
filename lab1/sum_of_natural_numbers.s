@@ -11,16 +11,17 @@
 
 sum_of_natural_numbers:
 	push {lr}
-	// Using registers:
-	// r0: Input Argument, Return Value
-	// r1: Sum/Result
-	mov r1, #0          // Initialize r1 (result) to 0
+	                    // Using registers:
+	                    // r0: Input Argument, Return Value
+	                    // r1: Sum/Result
+				
+	mov r1, #0          // Initialize the sum (r1) to 0
 loop:
-	cmp r0, #0          // If the current input is 0, return
+	cmp r0, #0          // If the current input (r0) is 0, return
 	ble end
-	add r1, r1, r0      // Add the current input to the sum
-	sub r0, r0, #1      // Remove 1 from r0 (input)
+	add r1, r1, r0      // Add the current input (r0) to the sum (r1)
+	sub r0, r0, #1      // Remove 1 from the current input (r0)
 	b loop              // Repeat
 end:
-	mov r0, r1          // Move r1 (result) to r0 (return)
+	mov r0, r1          // Move the sum (r1) to the return register (r0)
 	pop {pc}
