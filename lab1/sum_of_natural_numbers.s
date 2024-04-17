@@ -16,12 +16,12 @@ sum_of_natural_numbers:
 	                    // r1: Sum/Result
 				
 	mov r1, #0          // Initialize the sum (r1) to 0
-loop:
-	cmp r0, #0          // If the current input (r0) is 0, return
+ 	cmp r0, #0          // If the current input (r0) is 0, return
 	ble end
+loop:
 	add r1, r1, r0      // Add the current input (r0) to the sum (r1)
-	sub r0, r0, #1      // Remove 1 from the current input (r0)
-	b loop              // Repeat
+	subs r0, r0, #1      // Remove 1 from the current input (r0)
+	bne loop              // Repeat
 end:
 	mov r0, r1          // Move the sum (r1) to the return register (r0)
 	pop {pc}
