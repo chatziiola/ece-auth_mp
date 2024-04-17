@@ -24,8 +24,8 @@ digital_root:
 	mov r2, #0              // Initialize the quotient (r2) to 0
 	
 	cmp r0, #0            	// === Special cases ===
-	beq end                 // If the input (r0) is 0, return 0
-	it lt					// If the input (r0) is negative
+	beq.N end               // If the input (r0) is 0, return 0
+	it lt                   // If the input (r0) is negative
 	rsblt r0, r0, #0        // Convert negative input (r0) to positive
 	                        // === Division By 9 ===
 	umull r3, r2, r1, r0    // Multiply the input (r0) with the reciprocal (r1)
