@@ -81,6 +81,7 @@ void print_result(const char* label, int result) {
 
 int main() {
 	// UART Input
+
 	char input[BUFF_SIZE];
 	get_uart_input(input);
 	

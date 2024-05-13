@@ -4,8 +4,6 @@
   Description: Creating the project properly
 */
 
-static 
-
 void ledOn(void);
 void ledInit(void);
 void ledPlaying(void);
