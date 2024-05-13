@@ -1,0 +1,30 @@
+#+TITLE: Report 2
+#+DESCRIPTION: Προεργασία πάνω στην δύο
+#+AUTHOR: Lamprinos Chatziioannou
+#+FILETAGS:
+
+Και όλα αυτά χρειάζεται να τρέχουν *όλη* την ώρα
+- Προφανώς δεν μας παίρνει να είναι όλα στο ίδιο αρχείο - για λόγους
+  λοιπόν ευκολίας:
+  - uartIO functions in uartCompl (complementary)
+
+
+* TODO ΑΕΜ μέσω UART
+Αδιάφορο αρκετά εύκολο, αποτελεί κομμάτι προηγούμενης.
+
+* TODO ISRs αν AEM μονό ή ζυγό
+- [ ] Σε ποιο event θα συνδέονται;
+
+* TODO Toggle every now and then
+
+* Switch_ISR
+- more switchpresses
+
+** TODO Switch While LED on:
+- turn off
+** TODO Switch
+- turn on
+
+* TODO If LED state changes - print in uart
+- can't be in /????
+
