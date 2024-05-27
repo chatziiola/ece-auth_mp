@@ -1,0 +1,89 @@
+% Created 2024-05-27 Mon 23:38
+% Intended LaTeX compiler: xelatex
+\documentclass[11pt]{article}
+\input{~/Github/org-to-latex-export/mytemplate.tex}
+
+\usepackage{polyglossia}
+\setmainlanguage[variant=usmax]{english}
+\author{Λαμπρινός Χατζηιωάννου, Γιώργος Σελιβάνωφ}
+\date{\today}
+\title{Εργαστήριο 2 - Αναφορά}
+\hypersetup{
+ pdfauthor={Λαμπρινός Χατζηιωάννου, Γιώργος Σελιβάνωφ},
+ pdftitle={Εργαστήριο 2 - Αναφορά},
+ pdfkeywords={},
+ pdfsubject={Αναφορά για το Εργαστήριο 2 του μαθήματος Μικροεπεξεργαστές και Περιφερειακά},
+ pdfcreator={Emacs 29.2 (Org mode 9.7-pre)}, 
+ pdflang={English}}
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+Για την υλοποίηση της 2ης εργασίας, αποφασίστηκε να μην
+χρησιμοποιηθούν \texttt{uart\_prints} μέσα στα interrupts (ή στα callbacks
+αυτών), ώστε να διατηρηθεί το execution time τους στο ελάχιστο.
+Αντ’αυτού όλες οι ενέργειες που απαιτούν \texttt{uart\_print} εκτελούνται στην
+\texttt{main} εκμεταλλευόμενοι \texttt{queues}.
+\section{ΑΕΜ μέσω UART}
+\label{sec:orgcf79778}
+Για την ανάγνωση του ΑΕΜ μέσω UART χρησιμοποιήθηκαν οι συναρτήσεις που
+δόθηκαν στα πλαίσια του εργαστηρίου (\texttt{uart.c / uart.h}). Αντί η \texttt{main} να
+αναμένει ολόκληρο το input του χρήστη, πλέον χειρίζεται τον κάθε
+χαρακτήρα ξεχωριστά, ώστε να μπορεί να εκτελέσει και άλλες ενέργειες
+σε κάθε επανάληψη του loop (π.χ. Εκτύπωση της αλλαγής της κατάστασης
+του LED). Ως εκ τούτου, το enter αναγνωρίζεται ομοίως με το backspace,
+εκτελώντας μια ξεχωριστή συνάρτηση κατά τον εντοπισμό του
+(\texttt{checkAEM()}).
+
+\begin{verbatim}
+while(1) 
+    if (!( checkUart(&buff_index,buff) || checkMessg() ))
+      __WFI();
+\end{verbatim}
+\section{Συμπεριφορά LED ανάλογα με το AEM}
+\label{sec:orgd417858}
+Για το blink του LED ορίστηκε ένας timer με την χρήση των \texttt{timer.c} και
+\texttt{timer.h} που δίνονται στα πλαίσια του εργαστηρίου, ο οποίος απλώς κάνει
+toggle το \texttt{GPIO PA\_5} (User LED GPIO των SMT32 board). Κατά τον έλεγχο
+του ΑΕΜ με την \texttt{checkAEM()}, ο συγκεκριμένος timer ενεργοποιείται ή
+απενεργοποιείται αναλόγως με τον εάν το ΑΕΜ είναι μονός ή ζυγός
+αριθμός αντίστοιχα.
+
+Να σημειωθεί ότι παρότι στην εκφώνηση αναφέρεται πως τα παραπάνω
+πρέπει να γίνουν με την χρήση \texttt{ISR}, δεν βρήκαμε πως η χρήση ISR θα ήταν
+εφικτή/ενδεδειγμένη στο συγκεκριμένο στάδιο. Το input από τον χρήστη
+γίνεται στο στάδιο της UART, στο οποίο υπάρχει ήδη \texttt{ISR} μέσα στην οποία
+δεν θα ήταν σκόπιμο να ενσωματωθεί όλος αυτός ο έλεγχος.
+\section{Πάτημα του διακόπτη}
+\label{sec:org31a7316}
+Τα ζητούμενα e) και f) ουσιαστικά ζητάνε το πάτημα του διακόπτη να
+κάνει toggle το LED και να εκτυπώνει τον coutner των πατημάτων.
+Χρησιμοποιώντας της συναρτήσεις που δίνονται στα \texttt{gpio.c} και \texttt{gpio.h},
+ορίσαμε μια \textbf{interrupt callback} η οποία κάνει toggle το LED και
+προσθέτει το κατάλληλο μήνυμα στη \hyperref[sec:org3847045]{message queue}, ώστε να εκτυπωθεί ο
+counter από την main.
+\section{Message Queue}
+\label{sec:org3847045}
+Για την εκτύπωση μηνυμάτων μέσω uart\textsubscript{print} από τις διάφορες ISR, έγινε
+χρήση ενός message queue. Οι \texttt{ISR} προσθέτουν integers στο queue, οι
+οποίοι αντιστοιχίζονται στις αντίστοιχες ενέργειες:
+\begin{enumerate}
+\item Εκτύπωση μηνύματος για απενεργοποίηση του LED
+\item Εκτύπωση μηνύματος για ενεργοποίηση του LED
+\item Αύξηση κατά 1 και εκτύπωση του counter
+\end{enumerate}
+Με αυτόν τον τρόπο, δεν επιβαρύνονται τα interrupts από την uart\textsubscript{print}, διατηρώντας τον χρόνο εκτέλεσής τους χαμηλό.
+
+\begin{verbatim}
+if (queue_dequeue(&msg_queue, &lastState)) {
+  switch (lastState) {
+  case 0:
+    sprintf(buffer, "Led is off.\r\n"); break;
+  case 1:
+    sprintf(buffer, "Led is on.\r\n"); break;
+  case 2:
+    sprintf(buffer, "Keypresses pressed %d .\r\n", ++switchPresses); break;
+  }
+\end{verbatim}
+\end{document}
