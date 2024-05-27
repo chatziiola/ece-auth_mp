@@ -1,8 +1,10 @@
 #include "gpio.h"
 #include "dht.h"
 
-uint8_t Rh_byte1, Rh_byte2, Temp_byte1, Temp_byte2;
-uint16_t SUM; uint8_t Presence = 0;
+static void wait_for_pin(Pin pin, int value, uint32_t timeout) {
+		uint32_t timeout_ticks = timeout * (SystemCoreClock / 1000000);
+		while (((gpio_get(pin)>>pin)!= value) && timeout_ticks--);
+}
 
 static void DWT_Init(void)
 {
@@ -11,12 +13,6 @@ static void DWT_Init(void)
         DWT->CYCCNT = 0;
         DWT->CTRL |= DWT_CTRL_CYCCNTENA_Msk;
     }
-}
-
-static void wait_for_pin(Pin pin, int value, uint32_t timeout) {
-	// Calculate the delay in microseconds based on the system clock frequency
-	uint32_t timeout_ticks = timeout * (SystemCoreClock / 1000000);
-	while (((gpio_get(pin)>>pin)!= value) && timeout_ticks--);
 }
 
 /* 
@@ -34,9 +30,9 @@ static void delay_us(uint32_t us) {
 static uint8_t DHT11_Start(Pin pin)
 {
 	uint8_t successful = 0;
-	gpio_set_mode(pin, Output);  // set the pin as output
-	gpio_set(pin, 0);   // pull the pin low
-	delay_us (18000);   // wait for 18ms(DHT11_PORT, DHT11_PIN);    // set as input
+	gpio_set_mode(pin, Output);  
+	gpio_set(pin, 0);   
+	delay_us (18000);   
 	gpio_set_mode(pin, PullUp);
 	delay_us (40);
 	if (gpio_get(pin)) {
@@ -61,19 +57,19 @@ static uint8_t DHT11_Start(Pin pin)
  */
 static uint8_t DHT11_Read_Byte (Pin pin)
 {
-	uint8_t i,j;
-	for (j=0;j<8;j++)
+	uint8_t byte;
+	for (uint8_t i=0;i<8;i++)
 	{
-		wait_for_pin(pin, 1, 80);
-		delay_us (40);   // wait for 40 us
-		if (!(gpio_get(pin)))   // if the pin is low
+		wait_for_pin(pin, 1 , 70);
+		delay_us(40); 
+		if (!(gpio_get(pin)))  
 		{
-			i&= ~(1<<(7-j));   // write 0
+			byte&= ~(1<<(7-i)); 
 		}
-		else i|= (1<<(7-j));  // if the pin is high, write 1
-		wait_for_pin(pin, 0, 80);
+		else byte|= (1<<(7-i)); 
+		wait_for_pin(pin, 0 , 70);  
 	}
-	return i;
+	return byte;
 }
 
 
