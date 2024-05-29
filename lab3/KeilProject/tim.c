@@ -1,6 +1,8 @@
 #include "stm32f4xx.h"
 #include "tim.h"
 
+static void (*timerCallback)(void) = 0;
+
 void timerInitialize(uint32_t duration) {
 	RCC->APB1ENR |= RCC_APB1ENR_TIM2EN;  // Enable TIM2 clock
 
@@ -31,6 +33,10 @@ void TIM2_IRQHandler(void) {
   //Clear TIM2 update interrupt flag.
 	if (TIM2->SR & TIM_SR_UIF) {
 		TIM2->SR &= ~TIM_SR_UIF;
-		
+		timerCallback();
 	}
+}
+
+void timerSetCallback(void (*callback)(void)) {
+	timerCallback = callback;
 }

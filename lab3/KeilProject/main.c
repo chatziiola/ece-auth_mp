@@ -34,7 +34,7 @@ static void TouchSensorISR(int status) {
 static void timer_callback_isr(void) {
   // Avoiding to overpopulate the isr
   gpio_toggle(LEDPIN);
-  queue_enqueue(&msg_queue, gpio_get(LEDPIN)>>LEDPIN);
+  //queue_enqueue(&msg_queue, gpio_get(LEDPIN)>>LEDPIN);
 }
 static void uart_rx_isr(uint8_t rx) {
 	// Check if the received character is a printable ASCII character
@@ -112,9 +112,11 @@ static bool checkUart(uint32_t *buff_index, char *buff)
 
 int main()
 {
+		gpio_set_mode(LEDPIN, Output);
 	
-		timerInitialize(5000);
+		timerInitialize(1000);
 		timerEnable();
+		timerSetCallback(timer_callback_isr);
 	
     uart_init(115200);
     uart_set_rx_callback(uart_rx_isr);
