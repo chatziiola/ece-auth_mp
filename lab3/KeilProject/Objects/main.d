@@ -11,4 +11,5 @@
   C:\Users\gseli\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h \
   queue.h uart.h timer.h C:\Keil_v5\ARM\ARMCLANG\include\stdbool.h \
   C:\Keil_v5\ARM\ARMCLANG\include\stdlib.h \
-  C:\Keil_v5\ARM\ARMCLANG\include\string.h dht.h tim.h
+  C:\Keil_v5\ARM\ARMCLANG\include\string.h dht.h tim.h \
+  C:\Keil_v5\ARM\ARMCLANG\include\ctype.h

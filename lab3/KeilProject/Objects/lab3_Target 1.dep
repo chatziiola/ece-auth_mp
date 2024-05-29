@@ -1,6 +1,6 @@
 Dependencies for Project 'lab3', Target 'Target 1': (DO NOT MODIFY !)
 CompilerVersion: 6210000::V6.21::ARMCLANG
-F (.\main.c)(0x66576213)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -O0 -ffunction-sections -w-I./RTE/_Target_1-IC:/Users/gseli/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/gseli/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="539" -D_RTE_ -DSTM32F411xE -D_RTE_-o ./objects/main.o -MD)
+F (.\main.c)(0x6657683D)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -O0 -ffunction-sections -w-I./RTE/_Target_1-IC:/Users/gseli/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/gseli/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="539" -D_RTE_ -DSTM32F411xE -D_RTE_-o ./objects/main.o -MD)
 I (platform.h)(0x57B2C0A4)
 I (C:\Users\gseli\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include\STM32F4xx.h)(0x660EC95A)
 I (C:\Users\gseli\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f411xe.h)(0x660EC95A)
@@ -14,6 +14,7 @@ I (C:\Users\gseli\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSI
 I (queue.hsart.hiimer.ht:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x00000000)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x6569F662)
 I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x6569F662)
+I (C:\Keil_v5\ARM\ARMCLANG\include\ctype.h)(0x6569F662)
 F (.\adc.c)(0x6246D925)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -O0 -ffunction-sections -w-I./RTE/_Target_1-IC:/Users/gseli/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/gseli/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="539" -D_RTE_ -DSTM32F411xE -D_RTE_-o ./objects/adc.o -MD)
 I (C:\Users\gseli\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include\STM32F4xx.h)(0x660EC95A)
 I (C:\Users\gseli\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f411xe.h)(0x660EC95A)

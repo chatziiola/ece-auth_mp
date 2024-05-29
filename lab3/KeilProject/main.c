@@ -10,6 +10,7 @@
 #include <string.h>
 #include "dht.h"
 #include "tim.h"
+#include <ctype.h>
 // Device header
 
 #define LEDPIN PA_5
@@ -76,42 +77,61 @@ static void checkAEM(char *buff)
     timer_disable();
 }
 
-static bool checkUart(uint32_t *buff_index, char *buff)
-{
+const char* get_uart_input(char* buff) {
+	// Variables to help with UART read
 	uint8_t rx_char = 0;
-	if (queue_dequeue(&rx_queue, &rx_char)) {
-		// Handle backspace character
-		if (rx_char == 0x08) { 
-			if (*buff_index > 0) {
-				(*buff_index)--; 
-				uart_tx(rx_char); 
-			}
-		}
-		else if (rx_char == '\r'){ 
-		  uart_print("\r\n");
+	uint32_t buff_index;
+	
+	// Initialize the receive queue and UART
+	queue_init(&rx_queue, 128);
+	uart_init(115200);
+	uart_set_rx_callback(uart_rx_isr); // Set the UART receive callback function
+	uart_enable(); // Enable UART module
+	
+	__enable_irq(); // Enable interrupts
+	
+	uart_print("\r\n");// Print newline
+	
 
-		  // mάλλον θα χρειαστεί μετα
-		    checkAEM(buff);
-		    *buff_index = 0;
-		    memset(buff,'\0',BUFF_SIZE);
-		    uart_print("\r\nEnter your AEM:");
-		}
-		else if ( *buff_index >= BUFF_SIZE) {
-		    uart_print("Stop trying to overflow my buffer! I resent that!\r\n"); 
-		}
-		else {
+	// Prompt the user to enter their string
+	uart_print("Enter your AEM:");
+	buff_index = 0; // Reset buffer index
+	
+	do {
+		// Wait until a character is received in the queue
+		while (!queue_dequeue(&rx_queue, &rx_char))
+			__WFI(); // Wait for Interrupt
+
+		if (rx_char == 0x7F) { // Handle backspace character
+			if (buff_index > 0) {
+				buff_index--; // Move buffer index back
+				uart_tx(rx_char); // Send backspace character to erase on terminal
+			}
+		} else {
 			// Store and echo the received character back
-			buff[(*buff_index)++] = (char)rx_char; // Store character in buffer
+			buff[buff_index++] = (char)rx_char; // Store character in buffer
 			uart_tx(rx_char); // Echo character back to terminal
 		}
-		return true;
-	    }
-	    return false;
+	} while (rx_char != '\r' && buff_index < (BUFF_SIZE - 1)); // Continue until Enter key or buffer full
+	// BUFF_SIZE - 1: Allow only 5 digit AEM and terminate with \0
+	
+	// Replace the last character with null terminator to make it a valid C string
+	buff[buff_index - 1] = '\0';
+	uart_print("\r\n"); // Print newline
+	
+	// Check if buffer overflow occurred
+	if (buff_index > BUFF_SIZE) {
+		uart_print("Stop trying to overflow my buffer! I resent that!\r\n");
+	}
+	return buff;
 }
+
 
 
 int main()
 {
+		char input[BUFF_SIZE] = "abcd";
+
 		gpio_set_mode(LEDPIN, Output);
 	
 		timerInitialize(1000);
@@ -130,6 +150,11 @@ int main()
   gpio_set_mode(PA_0, Input);        
   gpio_set_callback(PA_0, TouchSensorISR);
   gpio_set_trigger(PA_0, Rising);
+	
+	//while(!isdigit(input)) {
+	//}
+	get_uart_input(input);
+	
 	while(1)
 	{
 		__WFI();
