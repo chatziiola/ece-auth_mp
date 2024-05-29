@@ -18,9 +18,7 @@
 #define BUFF_SIZE 6 // Conscious decision since AEM consists of only 5 digits
 #define QUEUE_SIZE 20
 
-static void MX_TIM2_Init(void);
-
-Queue rx_queue;
+static Queue rx_queue;
 static Queue msg_queue;
 static int switchPresses;
 
@@ -63,20 +61,15 @@ static bool checkMessg()
 		return false;
 }
 
-static void checkAEM(char *buff)
+static int checkAEM(char *buff)
 {
-  int aem = atoi(buff);
-  // TODO if AEM%2, ISR -> LED toggle every 0.5 sec
-  if (aem%2) //odd
-	{
-    timer_enable();
+  for(int i = 0; i<BUFF_SIZE; i++) {
+		if (!isdigit(buff[i])) {
+			return 0;
+		}
+	return 1;
 	}
-
-  // TODO elif AEM%2==0, ISR -> timer off, LED same state
-  else //even
-    timer_disable();
 }
-
 const char* get_uart_input(char* buff) {
 	// Variables to help with UART read
 	uint8_t rx_char = 0;
@@ -102,7 +95,80 @@ const char* get_uart_input(char* buff) {
 		while (!queue_dequeue(&rx_queue, &rx_char))
 			__WFI(); // Wait for Interrupt
 
-		if (rx_char == 0x7F) { // Handle backspace character
+		if (rx_char == 0x08) { // Handle backspace character
+			if (buff_index > 0) {
+				buff_index--; // Move buffer index back
+				uart_tx(rx_char); // Send backspace character to erase on terminal
+			}
+		} else {
+			// Store and echo the received character back
+			buff[buff_index++] = (char)rx_char; // Store character in buffer
+			uart_tx(rx_char); // Echo character back to terminal
+		}
+	} while (rx_char != '\r' && buff_index < (BUFF_SIZE - 1)); // Continue until Enter key or buffer full
+	// BUFF_SIZE - 1: Allow only 5 digit AEM and terminate with \0
+	
+	// Replace the last character with null terminator to make it a valid C string
+	//buff[buff_index - 1] = '\0';
+	uart_print("\r\n"); // Print newline
+	
+	// Check if buffer overflow occurred
+	if (buff_index > BUFF_SIZE) {
+		uart_print("Stop trying to overflow my buffer! I resent that!\r\n");
+	}
+	return buff;
+}
+
+
+
+int main()
+{
+		char buff[BUFF_SIZE];
+
+		gpio_set_mode(LEDPIN, Output);
+	
+		// Initialize the receive queue and UART
+		queue_init(&rx_queue, 128);
+		uart_init(115200);
+		uart_set_rx_callback(uart_rx_isr); // Set the UART receive callback function
+		uart_enable(); // Enable UART module
+	
+
+	
+		timerInitialize(1000);
+		timerEnable();
+		timerSetCallback(timer_callback_isr);
+	
+		uart_print("\r\nInitializing\r\n");
+    __enable_irq(); 
+
+  //**************************************************
+  // P_SW Button initialization
+  //**************************************************
+  gpio_set_mode(PA_0, Input);        
+  gpio_set_callback(PA_0, TouchSensorISR);
+  gpio_set_trigger(PA_0, Rising);
+	
+	do {
+				// Variables to help with UART read
+	uint8_t rx_char = 0;
+	uint32_t buff_index;
+	
+
+	
+	uart_print("\r\n");// Print newline
+	
+
+	// Prompt the user to enter their string
+	uart_print("Enter your AEM:");
+	buff_index = 0; // Reset buffer index
+	
+	do {
+		// Wait until a character is received in the queue
+		while (!queue_dequeue(&rx_queue, &rx_char))
+			__WFI(); // Wait for Interrupt
+
+		if (rx_char == 0x08) { // Handle backspace character
 			if (buff_index > 0) {
 				buff_index--; // Move buffer index back
 				uart_tx(rx_char); // Send backspace character to erase on terminal
@@ -123,37 +189,9 @@ const char* get_uart_input(char* buff) {
 	if (buff_index > BUFF_SIZE) {
 		uart_print("Stop trying to overflow my buffer! I resent that!\r\n");
 	}
-	return buff;
-}
-
-
-
-int main()
-{
-		char input[BUFF_SIZE] = "abcd";
-
-		gpio_set_mode(LEDPIN, Output);
-	
-		timerInitialize(1000);
-		timerEnable();
-		timerSetCallback(timer_callback_isr);
-	
-    uart_init(115200);
-    uart_set_rx_callback(uart_rx_isr);
-    uart_enable(); 
-		uart_print("\r\nInitializing\r\n");
-    __enable_irq(); 
-
-  //**************************************************
-  // P_SW Button initialization
-  //**************************************************
-  gpio_set_mode(PA_0, Input);        
-  gpio_set_callback(PA_0, TouchSensorISR);
-  gpio_set_trigger(PA_0, Rising);
-	
-	//while(!isdigit(input)) {
-	//}
-	get_uart_input(input);
+	uart_print(buff);
+	} while(!checkAEM(buff));
+	uart_print(buff);
 	
 	while(1)
 	{
