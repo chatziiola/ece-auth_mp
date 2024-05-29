@@ -14,6 +14,7 @@
 ".\objects\timer.o"
 ".\objects\uart.o"
 ".\objects\dht.o"
+".\objects\tim.o"
 ".\objects\retarget_io.o"
 ".\objects\startup_stm32f411xe.o"
 ".\objects\system_stm32f4xx.o"

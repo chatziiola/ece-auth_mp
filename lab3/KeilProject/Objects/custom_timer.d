@@ -1,6 +1,5 @@
-./objects/main.o: main.c C:\Keil_v5\ARM\ARMCLANG\include\stdio.h gpio.h \
-  platform.h \
-  C:\Users\gseli\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include\STM32F4xx.h \
+./objects/custom_timer.o: custom_timer.c \
+  C:\Users\gseli\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h \
   C:\Users\gseli\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f411xe.h \
   C:\Users\gseli\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm4.h \
   C:\Keil_v5\ARM\ARMCLANG\include\stdint.h \
@@ -8,7 +7,4 @@
   C:\Users\gseli\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h \
   C:\Users\gseli\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h \
   C:\Users\gseli\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\mpu_armv7.h \
-  C:\Users\gseli\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h \
-  queue.h uart.h timer.h C:\Keil_v5\ARM\ARMCLANG\include\stdbool.h \
-  C:\Keil_v5\ARM\ARMCLANG\include\stdlib.h \
-  C:\Keil_v5\ARM\ARMCLANG\include\string.h dht.h tim.h
+  C:\Users\gseli\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h

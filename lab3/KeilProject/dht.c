@@ -2,8 +2,9 @@
 #include "dht.h"
 
 static void wait_for_pin(Pin pin, int value, uint32_t timeout) {
-		uint32_t timeout_ticks = timeout * (SystemCoreClock / 1000000);
-		while (((gpio_get(pin)>>pin)!= value) && timeout_ticks--);
+		uint32_t start = DWT->CYCCNT;
+		uint32_t duration = timeout * (SystemCoreClock / 1000000);
+		while (((gpio_get(pin)>>pin)!= value) && ((DWT->CYCCNT - start) < duration));
 }
 
 static void DWT_Init(void)

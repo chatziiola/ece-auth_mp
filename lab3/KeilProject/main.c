@@ -9,6 +9,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "dht.h"
+#include "tim.h"
 // Device header
 
 #define LEDPIN PA_5
@@ -16,17 +17,18 @@
 #define BUFF_SIZE 6 // Conscious decision since AEM consists of only 5 digits
 #define QUEUE_SIZE 20
 
+static void MX_TIM2_Init(void);
+
 Queue rx_queue;
 static Queue msg_queue;
 static int switchPresses;
 
-// TODO switch -> ISR, turn on led, count switchpresses
-// TODO switch and LED -> ISR, turn off led, count switchpresses
-static void switchPressed_isr(int status) {
-  timer_disable();
-	gpio_toggle(LEDPIN);
-  queue_enqueue(&msg_queue,gpio_get(LEDPIN)>>LEDPIN);
-  queue_enqueue(&msg_queue, 2);
+static void TouchSensorISR(int status) {
+		float temperature, humidity;
+		ReadDHT11(PA_1, &temperature, &humidity);
+		char buffer[200];
+		sprintf(buffer, "Temperature: %.2f°C, Humidity: %.2f%%\r\n", (double)temperature, (double)humidity);
+		uart_print(buffer);
 }
 
 static void timer_callback_isr(void) {
@@ -110,17 +112,26 @@ static bool checkUart(uint32_t *buff_index, char *buff)
 
 int main()
 {
+	
+		timerInitialize(5000);
+		timerEnable();
+	
     uart_init(115200);
     uart_set_rx_callback(uart_rx_isr);
     uart_enable(); 
-
+		uart_print("\r\nInitializing\r\n");
     __enable_irq(); 
 
-		float temperature, humidity;
-		ReadDHT11(PA_1, &temperature, &humidity);
-		char buffer[200];
-		sprintf(buffer, "Temperature: %.2f°C, Humidity: %.2f%%\r\n", (double)temperature, (double)humidity);
-		uart_print(buffer);
-	
+  //**************************************************
+  // P_SW Button initialization
+  //**************************************************
+  gpio_set_mode(PA_0, Input);        
+  gpio_set_callback(PA_0, TouchSensorISR);
+  gpio_set_trigger(PA_0, Rising);
+	while(1)
+	{
+		__WFI();
+  }
+
     __disable_irq();
 }
