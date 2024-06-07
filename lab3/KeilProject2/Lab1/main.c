@@ -14,7 +14,7 @@
 #include "float_queue.h"
 // Device header
 
-#define LEDPIN PA_5
+#define LEDPIN PA_4
 #define LEDSEMIPERIOD 5000000 //In minisec
 #define BUFF_SIZE 6 // Conscious decision since AEM consists of only 5 digits
 #define QUEUE_SIZE 20
@@ -30,7 +30,7 @@ static void TouchSensorISR(int status) {
 		if (switchPresses == 0) {
 			int AEM = atoi(buff) % 100;
 			AEM = AEM / 10 + AEM % 10;
-			sensorRate = AEM;	
+			sensorRate = (AEM != 2) ? AEM : 4;	
 		} else if (switchPresses % 2) {
 			sensorRate = 3;
 			showHumidity = false;
@@ -54,7 +54,6 @@ static void temperature_timer_isr(void) {
 static void blink_timer_isr(void) {
   // Avoiding to overpopulate the isr
   gpio_toggle(LEDPIN);
-  //queue_enqueue(&msg_queue, gpio_get(LEDPIN)>>LEDPIN);
 }
 static void uart_rx_isr(uint8_t rx) {
 	// Check if the received character is a printable ASCII character
@@ -147,8 +146,6 @@ const char* get_uart_input(char* buff) {
 
 int main()
 {
-
-
 		float_queue_init(&msg_queue, QUEUE_SIZE);
 	
 		gpio_set_mode(LEDPIN, Output);
@@ -159,8 +156,6 @@ int main()
 		uart_set_rx_callback(uart_rx_isr); // Set the UART receive callback function
 		uart_enable(); // Enable UART module
 
-	
-		uart_print("\r\nInitializing\r\n");
     __enable_irq(); 
 	
 		timer_init(1000000);

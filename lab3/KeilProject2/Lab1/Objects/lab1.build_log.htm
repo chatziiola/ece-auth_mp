@@ -27,10 +27,7 @@ Project File Date:  05/29/2024
 <h2>Output:</h2>
 *** Using Compiler 'V6.21', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
 Rebuild target 'Target 1'
-assembling hash.s...
-assembling digital_root.s...
-assembling sum_of_natural_numbers.s...
-adc.c(1): warning: In file included from...
+leds.c(1): warning: In file included from...
 ./platform.h(18): warning: non-portable path to file '<stm32f4xx.h>'; specified path differs in case from file name on disk [-Wnonportable-include-path]
    18 | #include <STM32F4xx.h>
       |          ^~~~~~~~~~~~~
@@ -38,85 +35,60 @@ adc.c(1): warning: In file included from...
 ./platform.h(161): warning: invalid UTF-8 in comment [-Winvalid-utf8]
   161 | // *******************************ARM University Program Copyright <A9> ARM Ltd 2016*************************************   
       |                                                                    ^
-adc.c(3): warning: In file included from...
+leds.c(3): warning: In file included from...
+./leds.h(22): warning: invalid UTF-8 in comment [-Winvalid-utf8]
+   22 | // *******************************ARM University Program Copyright <A9> ARM Ltd 2016*************************************   
+      |                                                                    ^
+leds.c(22): warning: invalid UTF-8 in comment [-Winvalid-utf8]
+   22 | // *******************************ARM University Program Copyright <A9> ARM Ltd 2016*************************************   
+      |                                                                    ^
+4 warnings generated.
+compiling leds.c...
+queue.c(16): warning: unsafe buffer access [-Wunsafe-buffer-usage]
+   16 |                 queue->data[queue->tail++] = item;
+      |                 ^~~~~~~~~~~
+queue.c(26): warning: unsafe buffer access [-Wunsafe-buffer-usage]
+   26 |                 *item = queue->data[queue->head++];
+      |                         ^~~~~~~~~~~
+2 warnings generated.
+compiling queue.c...
+assembling digital_root.s...
+assembling hash.s...
+assembling sum_of_natural_numbers.s...
+comparator.c(1): warning: In file included from...
+./platform.h(18): warning: non-portable path to file '<stm32f4xx.h>'; specified path differs in case from file name on disk [-Wnonportable-include-path]
+   18 | #include <STM32F4xx.h>
+      |          ^~~~~~~~~~~~~
+      |          <stm32f4xx.h>
+./platform.h(161): warning: invalid UTF-8 in comment [-Winvalid-utf8]
+  161 | // *******************************ARM University Program Copyright <A9> ARM Ltd 2016*************************************   
+      |                                                                    ^
+comparator.c(2): warning: In file included from...
+./comparator.h(6): warning: In file included from...
 ./adc.h(10): warning: 'ADC1_BASE' macro redefined [-Wmacro-redefined]
    10 | #define ADC1_BASE             (APB2PERIPH_BASE + 0x2000)
       |         ^
 C:/Users/gseli/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f411xe.h(678): note: previous definition is here
   678 | #define ADC1_BASE             (APB2PERIPH_BASE + 0x2000UL)
       |         ^
-adc.c(3): warning: In file included from...
+comparator.c(2): warning: In file included from...
+./comparator.h(6): warning: In file included from...
 ./adc.h(23): warning: 'GPIOA_BASE' macro redefined [-Wmacro-redefined]
    23 | #define GPIOA_BASE            (AHB1PERIPH_BASE + 0x0000)
       |         ^
 C:/Users/gseli/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f411xe.h(693): note: previous definition is here
   693 | #define GPIOA_BASE            (AHB1PERIPH_BASE + 0x0000UL)
       |         ^
-adc.c(7): warning: no previous extern declaration for non-static variable 'PinMap_ADC' [-Wmissing-variable-declarations]
-    7 | const PinMap PinMap_ADC[] = {
-      |              ^
-adc.c(7): note: declare 'static' if the variable is not intended to be used outside of this translation unit
-    7 | const PinMap PinMap_ADC[] = {
-      |       ^
-adc.c(3): warning: In file included from...
-./adc.h(220): warning: padding size of 'analogin_s' with 3 bytes to alignment boundary [-Wpadded]
-  220 | typedef struct {
-      |         ^
-adc.c(67): warning: 35 enumeration values not explicitly handled in switch: 'NC', 'PA_8', 'PA_9'... [-Wswitch-enum]
-   67 |         switch (pin)
-      |                 ^~~
-adc.c(145): warning: implicit conversion changes signedness: 'const int' to 'uint32_t' (aka 'unsigned int') [-Wsign-conversion]
-  145 |             return map->peripheral;
-      |             ~~~~~~ ~~~~~^~~~~~~~~~
-adc.c(167): warning: cast from function call of type 'uint32_t' (aka 'unsigned int') to non-matching type 'ADCName' [-Wbad-function-cast]
-  167 |                 obj->adc = (ADCName)pinmap_peripheral(pin);    
-      |                                     ^~~~~~~~~~~~~~~~~~~~~~
-adc.c(3): warning: In file included from...
-./adc.h(180): warning: padding struct 'ADC_HandleTypeDef' with 2 bytes to align 'ErrorCode' [-Wpadded]
-  180 |   __IO uint32_t                 ErrorCode;                   /*!< ADC Error code */
-      |                                 ^
-adc.c(170): warning: mixing declarations and code is incompatible with standards before C99 [-Wdeclaration-after-statement]
-  170 |     uint32_t function = pinmap_function(pin);   
-      |              ^
-adc.c(309): warning: implicit conversion changes signedness: 'const int' to 'uint32_t' (aka 'unsigned int') [-Wsign-conversion]
-  309 |             return map->function;
-      |             ~~~~~~ ~~~~~^~~~~~~~
-adc.c(305): warning: no previous prototype for function 'pinmap_find_function' [-Wmissing-prototypes]
-  305 | uint32_t pinmap_find_function(Pin pin) {
-      |          ^
-adc.c(305): note: declare 'static' if the function is not intended to be used outside of this translation unit
-  305 | uint32_t pinmap_find_function(Pin pin) {
-      | ^
-      | static 
-adc.c(372): warning: mixing declarations and code is incompatible with standards before C99 [-Wdeclaration-after-statement]
-  372 |     GPIO_TypeDef *gpio = (GPIO_TypeDef *)gpio_add;
-      |                   ^
-adc.c(421): warning: 35 enumeration values not explicitly handled in switch: 'NC', 'PA_8', 'PA_9'... [-Wswitch-enum]
-  421 |         switch (pin)
-      |                 ^~~
-adc.c(546): warning: implicit conversion loses integer precision: 'uint32_t' (aka 'unsigned int') to 'uint16_t' (aka 'unsigned short') [-Wimplicit-int-conversion]
-  546 |         return (_ADC_GetValue(&AdcHandle));
-      |         ~~~~~~  ^~~~~~~~~~~~~~~~~~~~~~~~~
-adc.c(5): warning: no previous extern declaration for non-static variable 'AdcHandle' [-Wmissing-variable-declarations]
-    5 | ADC_HandleTypeDef AdcHandle;
-      |                   ^
-adc.c(5): note: declare 'static' if the variable is not intended to be used outside of this translation unit
-    5 | ADC_HandleTypeDef AdcHandle;
-      | ^
-adc.c(146): warning: unsafe pointer arithmetic [-Wunsafe-buffer-usage]
-  146 |         map++;
-      |         ^~~
-adc.c(310): warning: unsafe pointer arithmetic [-Wunsafe-buffer-usage]
-  310 |         map++;
-      |         ^~~
-adc.c(335): warning: unsafe pointer arithmetic [-Wunsafe-buffer-usage]
-  335 |       map++;
-      |       ^~~
-adc.c(377): warning: unsafe buffer access [-Wunsafe-buffer-usage]
-  377 |     GPIO_InitStructure.Mode      = gpio_mode[mode];
-      |                                    ^~~~~~~~~
-21 warnings generated.
-compiling adc.c...
+comparator.c(17): warning: mixing declarations and code is incompatible with standards before C99 [-Wdeclaration-after-statement]
+   17 |         uint16_t comp_pos = ( adc_read(P_CMP_PLUS) & (uint16_t)0x0FFF) ;
+      |                  ^
+comparator.c(2): warning: In file included from...
+./comparator.h(6): warning: In file included from...
+./adc.h(251): warning: unused function 'local_ADC_Init' [-Wunused-function]
+  251 | static void local_ADC_Init(ADC_HandleTypeDef* hadc);
+      |             ^~~~~~~~~~~~~~
+6 warnings generated.
+compiling comparator.c...
 i2c.c(1): warning: In file included from...
 ./platform.h(18): warning: non-portable path to file '<stm32f4xx.h>'; specified path differs in case from file name on disk [-Wnonportable-include-path]
    18 | #include <STM32F4xx.h>
@@ -177,188 +149,6 @@ i2c.c(80): warning: unsafe buffer access [-Wunsafe-buffer-usage]
       |                 ^~~~~~
 13 warnings generated.
 compiling i2c.c...
-stm32f4xx_adc.c(98): warning: In file included from...
-./stm32f4xx_adc.h(58): warning: padding struct 'ADC_InitTypeDef' with 2 bytes to align 'ADC_ExternalTrigConvEdge' [-Wpadded]
-   58 |   uint32_t ADC_ExternalTrigConvEdge;      /*!< Select the external trigger edge and
-      |            ^
-./stm32f4xx_adc.h(47): warning: padding size of 'ADC_InitTypeDef' with 3 bytes to alignment boundary [-Wpadded]
-   47 | typedef struct
-      |         ^
-2 warnings generated.
-compiling stm32f4xx_adc.c...
-leds.c(1): warning: In file included from...
-./platform.h(18): warning: non-portable path to file '<stm32f4xx.h>'; specified path differs in case from file name on disk [-Wnonportable-include-path]
-   18 | #include <STM32F4xx.h>
-      |          ^~~~~~~~~~~~~
-      |          <stm32f4xx.h>
-./platform.h(161): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-  161 | // *******************************ARM University Program Copyright <A9> ARM Ltd 2016*************************************   
-      |                                                                    ^
-leds.c(3): warning: In file included from...
-./leds.h(22): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   22 | // *******************************ARM University Program Copyright <A9> ARM Ltd 2016*************************************   
-      |                                                                    ^
-leds.c(22): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   22 | // *******************************ARM University Program Copyright <A9> ARM Ltd 2016*************************************   
-      |                                                                    ^
-4 warnings generated.
-compiling leds.c...
-main.c(2): warning: In file included from...
-./gpio.h(12): warning: In file included from...
-./platform.h(18): warning: non-portable path to file '<stm32f4xx.h>'; specified path differs in case from file name on disk [-Wnonportable-include-path]
-   18 | #include <STM32F4xx.h>
-      |          ^~~~~~~~~~~~~
-      |          <stm32f4xx.h>
-./platform.h(161): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-  161 | // *******************************ARM University Program Copyright <A9> ARM Ltd 2016*************************************   
-      |                                                                    ^
-main.c(7): warning: In file included from...
-./timer.h(31): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   31 | // *******************************ARM University Program Copyright <A9> ARM Ltd 2016*************************************   
-      |                                                                    ^
-main.c(11): warning: In file included from...
-./dht.h(22): warning: no newline at end of file [-Wnewline-eof]
-   22 | #endif //DHT_H
-      |               ^
-main.c(12): warning: In file included from...
-./tim.h(3): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
-    3 | void timerEnable();
-      |                 ^
-      |                  void
-./tim.h(4): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
-    4 | void timerDisable();
-      |                  ^
-      |                   void
-./tim.h(6): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
-    6 | void timerSetCallback(void (*callback)());
-      |                                       ^
-      |                                        void
-./tim.h(7): warning: no newline at end of file [-Wnewline-eof]
-    7 | void timerInitialize(uint32_t duration);
-      |                                         ^
-main.c(14): warning: In file included from...
-./float_queue.h(62): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   62 | // *******************************ARM University Program Copyright <A9> ARM Ltd 2016*************************************   
-      |                                                                    ^
-main.c(33): warning: implicit conversion loses integer precision: 'int' to 'uint8_t' (aka 'unsigned char') [-Wimplicit-int-conversion]
-   33 |                         sensorRate = AEM;       
-      |                                    ~ ^~~
-main.c(29): warning: unused parameter 'status' [-Wunused-parameter]
-   29 | static void TouchSensorISR(int status) {
-      |                                ^
-main.c(61): warning: result of comparison of unsigned expression >= 0 is always true [-Wtautological-unsigned-zero-compare]
-   61 |         if (rx >= 0x0 && rx <= 0x7F ) {
-      |             ~~ ^  ~~~
-main.c(67): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
-   67 | static bool checkMessg()
-      |                       ^
-      |                        void
-main.c(95): warning: declaration shadows a variable in the global scope [-Wshadow]
-   95 | static int checkAEM(char *buff)
-      |                           ^
-main.c(27): note: previous declaration is here
-   27 | static char buff[BUFF_SIZE];
-      |             ^
-main.c(98): warning: array subscript is of type 'char' [-Wchar-subscripts]
-   98 |                 if (!isdigit(buff[i])) {
-      |                      ^       ~~~~~~~
-C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\ctype.h(167): note: expanded from macro 'isdigit'
-  167 |     #define isdigit(c) (__arm_ctype[c] == __ARM_CT_N)
-      |                                    ^~
-main.c(103): warning: non-void function does not return a value in all control paths [-Wreturn-type]
-  103 | }
-      | ^
-main.c(97): warning: loop will run at most once (loop increment never executed) [-Wunreachable-code-loop-increment]
-   97 |   for(int i = 0; i<BUFF_SIZE; i++) {
-      |                               ^~~
-main.c(104): warning: declaration shadows a variable in the global scope [-Wshadow]
-  104 | const char* get_uart_input(char* buff) {
-      |                                  ^
-main.c(27): note: previous declaration is here
-   27 | static char buff[BUFF_SIZE];
-      |             ^
-main.c(104): warning: no previous prototype for function 'get_uart_input' [-Wmissing-prototypes]
-  104 | const char* get_uart_input(char* buff) {
-      |             ^
-main.c(104): note: declare 'static' if the function is not intended to be used outside of this translation unit
-  104 | const char* get_uart_input(char* buff) {
-      |       ^
-      | static 
-main.c(148): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
-  148 | int main()
-      |         ^
-      |          void
-main.c(185): warning: incompatible function pointer types passing 'void (void)' to parameter of type 'void (*)()' [-Wincompatible-function-pointer-types-strict]
-  185 |                 timerSetCallback(temperature_timer_isr);
-      |                                  ^~~~~~~~~~~~~~~~~~~~~
-./tim.h(6): note: passing argument to parameter 'callback' here
-    6 | void timerSetCallback(void (*callback)());
-      |                              ^
-main.c(194): warning: code will never be executed [-Wunreachable-code]
-  194 |     __disable_irq();
-      |     ^~~~~~~~~~~~~
-main.c(98): warning: unsafe buffer access [-Wunsafe-buffer-usage]
-   98 |                 if (!isdigit(buff[i])) {
-      |                      ^~~~~~~~~~~~~~~~
-C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\ctype.h(167): note: expanded from macro 'isdigit'
-  167 |     #define isdigit(c) (__arm_ctype[c] == __ARM_CT_N)
-      |                         ^~~~~~~~~~~
-C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\ctype.h(136): note: expanded from macro '__arm_ctype'
-  136 | #define __arm_ctype (*__CLIBNS __rt_ctype_table())
-      |                     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-main.c(98): warning: unsafe buffer access [-Wunsafe-buffer-usage]
-   98 |                 if (!isdigit(buff[i])) {
-      |                              ^~~~
-C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\ctype.h(167): note: expanded from macro 'isdigit'
-  167 |     #define isdigit(c) (__arm_ctype[c] == __ARM_CT_N)
-      |                                     ^
-main.c(129): warning: unsafe buffer access [-Wunsafe-buffer-usage]
-  129 |                         buff[buff_index++] = (char)rx_char; // Store character in buffer
-      |                         ^~~~
-25 warnings generated.
-compiling main.c...
-comparator.c(1): warning: In file included from...
-./platform.h(18): warning: non-portable path to file '<stm32f4xx.h>'; specified path differs in case from file name on disk [-Wnonportable-include-path]
-   18 | #include <STM32F4xx.h>
-      |          ^~~~~~~~~~~~~
-      |          <stm32f4xx.h>
-./platform.h(161): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-  161 | // *******************************ARM University Program Copyright <A9> ARM Ltd 2016*************************************   
-      |                                                                    ^
-comparator.c(2): warning: In file included from...
-./comparator.h(6): warning: In file included from...
-./adc.h(10): warning: 'ADC1_BASE' macro redefined [-Wmacro-redefined]
-   10 | #define ADC1_BASE             (APB2PERIPH_BASE + 0x2000)
-      |         ^
-C:/Users/gseli/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f411xe.h(678): note: previous definition is here
-  678 | #define ADC1_BASE             (APB2PERIPH_BASE + 0x2000UL)
-      |         ^
-comparator.c(2): warning: In file included from...
-./comparator.h(6): warning: In file included from...
-./adc.h(23): warning: 'GPIOA_BASE' macro redefined [-Wmacro-redefined]
-   23 | #define GPIOA_BASE            (AHB1PERIPH_BASE + 0x0000)
-      |         ^
-C:/Users/gseli/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f411xe.h(693): note: previous definition is here
-  693 | #define GPIOA_BASE            (AHB1PERIPH_BASE + 0x0000UL)
-      |         ^
-comparator.c(17): warning: mixing declarations and code is incompatible with standards before C99 [-Wdeclaration-after-statement]
-   17 |         uint16_t comp_pos = ( adc_read(P_CMP_PLUS) & (uint16_t)0x0FFF) ;
-      |                  ^
-comparator.c(2): warning: In file included from...
-./comparator.h(6): warning: In file included from...
-./adc.h(251): warning: unused function 'local_ADC_Init' [-Wunused-function]
-  251 | static void local_ADC_Init(ADC_HandleTypeDef* hadc);
-      |             ^~~~~~~~~~~~~~
-6 warnings generated.
-compiling comparator.c...
-queue.c(16): warning: unsafe buffer access [-Wunsafe-buffer-usage]
-   16 |                 queue->data[queue->tail++] = item;
-      |                 ^~~~~~~~~~~
-queue.c(26): warning: unsafe buffer access [-Wunsafe-buffer-usage]
-   26 |                 *item = queue->data[queue->head++];
-      |                         ^~~~~~~~~~~
-2 warnings generated.
-compiling queue.c...
 gpio.c(1): warning: In file included from...
 ./platform.h(18): warning: non-portable path to file '<stm32f4xx.h>'; specified path differs in case from file name on disk [-Wnonportable-include-path]
    18 | #include <STM32F4xx.h>
@@ -574,6 +364,216 @@ C:/Users/gseli/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/D
       |                             ^
 38 warnings generated.
 compiling gpio.c...
+main.c(2): warning: In file included from...
+./gpio.h(12): warning: In file included from...
+./platform.h(18): warning: non-portable path to file '<stm32f4xx.h>'; specified path differs in case from file name on disk [-Wnonportable-include-path]
+   18 | #include <STM32F4xx.h>
+      |          ^~~~~~~~~~~~~
+      |          <stm32f4xx.h>
+./platform.h(161): warning: invalid UTF-8 in comment [-Winvalid-utf8]
+  161 | // *******************************ARM University Program Copyright <A9> ARM Ltd 2016*************************************   
+      |                                                                    ^
+main.c(7): warning: In file included from...
+./timer.h(31): warning: invalid UTF-8 in comment [-Winvalid-utf8]
+   31 | // *******************************ARM University Program Copyright <A9> ARM Ltd 2016*************************************   
+      |                                                                    ^
+main.c(11): warning: In file included from...
+./dht.h(22): warning: no newline at end of file [-Wnewline-eof]
+   22 | #endif //DHT_H
+      |               ^
+main.c(12): warning: In file included from...
+./tim.h(3): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+    3 | void timerEnable();
+      |                 ^
+      |                  void
+./tim.h(4): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+    4 | void timerDisable();
+      |                  ^
+      |                   void
+./tim.h(6): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+    6 | void timerSetCallback(void (*callback)());
+      |                                       ^
+      |                                        void
+./tim.h(7): warning: no newline at end of file [-Wnewline-eof]
+    7 | void timerInitialize(uint32_t duration);
+      |                                         ^
+main.c(14): warning: In file included from...
+./float_queue.h(62): warning: invalid UTF-8 in comment [-Winvalid-utf8]
+   62 | // *******************************ARM University Program Copyright <A9> ARM Ltd 2016*************************************   
+      |                                                                    ^
+main.c(33): warning: implicit conversion loses integer precision: 'int' to 'uint8_t' (aka 'unsigned char') [-Wimplicit-int-conversion]
+   33 |                         sensorRate = (AEM != 2) ? AEM : 4;      
+      |                                    ~              ^~~
+main.c(29): warning: unused parameter 'status' [-Wunused-parameter]
+   29 | static void TouchSensorISR(int status) {
+      |                                ^
+main.c(60): warning: result of comparison of unsigned expression >= 0 is always true [-Wtautological-unsigned-zero-compare]
+   60 |         if (rx >= 0x0 && rx <= 0x7F ) {
+      |             ~~ ^  ~~~
+main.c(66): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+   66 | static bool checkMessg()
+      |                       ^
+      |                        void
+main.c(94): warning: declaration shadows a variable in the global scope [-Wshadow]
+   94 | static int checkAEM(char *buff)
+      |                           ^
+main.c(27): note: previous declaration is here
+   27 | static char buff[BUFF_SIZE];
+      |             ^
+main.c(97): warning: array subscript is of type 'char' [-Wchar-subscripts]
+   97 |                 if (!isdigit(buff[i])) {
+      |                      ^       ~~~~~~~
+C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\ctype.h(167): note: expanded from macro 'isdigit'
+  167 |     #define isdigit(c) (__arm_ctype[c] == __ARM_CT_N)
+      |                                    ^~
+main.c(102): warning: non-void function does not return a value in all control paths [-Wreturn-type]
+  102 | }
+      | ^
+main.c(96): warning: loop will run at most once (loop increment never executed) [-Wunreachable-code-loop-increment]
+   96 |   for(int i = 0; i<BUFF_SIZE; i++) {
+      |                               ^~~
+main.c(103): warning: declaration shadows a variable in the global scope [-Wshadow]
+  103 | const char* get_uart_input(char* buff) {
+      |                                  ^
+main.c(27): note: previous declaration is here
+   27 | static char buff[BUFF_SIZE];
+      |             ^
+main.c(103): warning: no previous prototype for function 'get_uart_input' [-Wmissing-prototypes]
+  103 | const char* get_uart_input(char* buff) {
+      |             ^
+main.c(103): note: declare 'static' if the function is not intended to be used outside of this translation unit
+  103 | const char* get_uart_input(char* buff) {
+      |       ^
+      | static 
+main.c(147): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+  147 | int main()
+      |         ^
+      |          void
+main.c(180): warning: incompatible function pointer types passing 'void (void)' to parameter of type 'void (*)()' [-Wincompatible-function-pointer-types-strict]
+  180 |                 timerSetCallback(temperature_timer_isr);
+      |                                  ^~~~~~~~~~~~~~~~~~~~~
+./tim.h(6): note: passing argument to parameter 'callback' here
+    6 | void timerSetCallback(void (*callback)());
+      |                              ^
+main.c(189): warning: code will never be executed [-Wunreachable-code]
+  189 |     __disable_irq();
+      |     ^~~~~~~~~~~~~
+main.c(97): warning: unsafe buffer access [-Wunsafe-buffer-usage]
+   97 |                 if (!isdigit(buff[i])) {
+      |                      ^~~~~~~~~~~~~~~~
+C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\ctype.h(167): note: expanded from macro 'isdigit'
+  167 |     #define isdigit(c) (__arm_ctype[c] == __ARM_CT_N)
+      |                         ^~~~~~~~~~~
+C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\ctype.h(136): note: expanded from macro '__arm_ctype'
+  136 | #define __arm_ctype (*__CLIBNS __rt_ctype_table())
+      |                     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+main.c(97): warning: unsafe buffer access [-Wunsafe-buffer-usage]
+   97 |                 if (!isdigit(buff[i])) {
+      |                              ^~~~
+C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\ctype.h(167): note: expanded from macro 'isdigit'
+  167 |     #define isdigit(c) (__arm_ctype[c] == __ARM_CT_N)
+      |                                     ^
+main.c(128): warning: unsafe buffer access [-Wunsafe-buffer-usage]
+  128 |                         buff[buff_index++] = (char)rx_char; // Store character in buffer
+      |                         ^~~~
+25 warnings generated.
+compiling main.c...
+adc.c(1): warning: In file included from...
+./platform.h(18): warning: non-portable path to file '<stm32f4xx.h>'; specified path differs in case from file name on disk [-Wnonportable-include-path]
+   18 | #include <STM32F4xx.h>
+      |          ^~~~~~~~~~~~~
+      |          <stm32f4xx.h>
+./platform.h(161): warning: invalid UTF-8 in comment [-Winvalid-utf8]
+  161 | // *******************************ARM University Program Copyright <A9> ARM Ltd 2016*************************************   
+      |                                                                    ^
+adc.c(3): warning: In file included from...
+./adc.h(10): warning: 'ADC1_BASE' macro redefined [-Wmacro-redefined]
+   10 | #define ADC1_BASE             (APB2PERIPH_BASE + 0x2000)
+      |         ^
+C:/Users/gseli/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f411xe.h(678): note: previous definition is here
+  678 | #define ADC1_BASE             (APB2PERIPH_BASE + 0x2000UL)
+      |         ^
+adc.c(3): warning: In file included from...
+./adc.h(23): warning: 'GPIOA_BASE' macro redefined [-Wmacro-redefined]
+   23 | #define GPIOA_BASE            (AHB1PERIPH_BASE + 0x0000)
+      |         ^
+C:/Users/gseli/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f411xe.h(693): note: previous definition is here
+  693 | #define GPIOA_BASE            (AHB1PERIPH_BASE + 0x0000UL)
+      |         ^
+adc.c(7): warning: no previous extern declaration for non-static variable 'PinMap_ADC' [-Wmissing-variable-declarations]
+    7 | const PinMap PinMap_ADC[] = {
+      |              ^
+adc.c(7): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+    7 | const PinMap PinMap_ADC[] = {
+      |       ^
+adc.c(3): warning: In file included from...
+./adc.h(220): warning: padding size of 'analogin_s' with 3 bytes to alignment boundary [-Wpadded]
+  220 | typedef struct {
+      |         ^
+adc.c(67): warning: 35 enumeration values not explicitly handled in switch: 'NC', 'PA_8', 'PA_9'... [-Wswitch-enum]
+   67 |         switch (pin)
+      |                 ^~~
+adc.c(145): warning: implicit conversion changes signedness: 'const int' to 'uint32_t' (aka 'unsigned int') [-Wsign-conversion]
+  145 |             return map->peripheral;
+      |             ~~~~~~ ~~~~~^~~~~~~~~~
+adc.c(167): warning: cast from function call of type 'uint32_t' (aka 'unsigned int') to non-matching type 'ADCName' [-Wbad-function-cast]
+  167 |                 obj->adc = (ADCName)pinmap_peripheral(pin);    
+      |                                     ^~~~~~~~~~~~~~~~~~~~~~
+adc.c(3): warning: In file included from...
+./adc.h(180): warning: padding struct 'ADC_HandleTypeDef' with 2 bytes to align 'ErrorCode' [-Wpadded]
+  180 |   __IO uint32_t                 ErrorCode;                   /*!< ADC Error code */
+      |                                 ^
+adc.c(170): warning: mixing declarations and code is incompatible with standards before C99 [-Wdeclaration-after-statement]
+  170 |     uint32_t function = pinmap_function(pin);   
+      |              ^
+adc.c(309): warning: implicit conversion changes signedness: 'const int' to 'uint32_t' (aka 'unsigned int') [-Wsign-conversion]
+  309 |             return map->function;
+      |             ~~~~~~ ~~~~~^~~~~~~~
+adc.c(305): warning: no previous prototype for function 'pinmap_find_function' [-Wmissing-prototypes]
+  305 | uint32_t pinmap_find_function(Pin pin) {
+      |          ^
+adc.c(305): note: declare 'static' if the function is not intended to be used outside of this translation unit
+  305 | uint32_t pinmap_find_function(Pin pin) {
+      | ^
+      | static 
+adc.c(372): warning: mixing declarations and code is incompatible with standards before C99 [-Wdeclaration-after-statement]
+  372 |     GPIO_TypeDef *gpio = (GPIO_TypeDef *)gpio_add;
+      |                   ^
+adc.c(421): warning: 35 enumeration values not explicitly handled in switch: 'NC', 'PA_8', 'PA_9'... [-Wswitch-enum]
+  421 |         switch (pin)
+      |                 ^~~
+adc.c(546): warning: implicit conversion loses integer precision: 'uint32_t' (aka 'unsigned int') to 'uint16_t' (aka 'unsigned short') [-Wimplicit-int-conversion]
+  546 |         return (_ADC_GetValue(&AdcHandle));
+      |         ~~~~~~  ^~~~~~~~~~~~~~~~~~~~~~~~~
+adc.c(5): warning: no previous extern declaration for non-static variable 'AdcHandle' [-Wmissing-variable-declarations]
+    5 | ADC_HandleTypeDef AdcHandle;
+      |                   ^
+adc.c(5): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+    5 | ADC_HandleTypeDef AdcHandle;
+      | ^
+adc.c(146): warning: unsafe pointer arithmetic [-Wunsafe-buffer-usage]
+  146 |         map++;
+      |         ^~~
+adc.c(310): warning: unsafe pointer arithmetic [-Wunsafe-buffer-usage]
+  310 |         map++;
+      |         ^~~
+adc.c(335): warning: unsafe pointer arithmetic [-Wunsafe-buffer-usage]
+  335 |       map++;
+      |       ^~~
+adc.c(377): warning: unsafe buffer access [-Wunsafe-buffer-usage]
+  377 |     GPIO_InitStructure.Mode      = gpio_mode[mode];
+      |                                    ^~~~~~~~~
+21 warnings generated.
+compiling adc.c...
+stm32f4xx_adc.c(98): warning: In file included from...
+./stm32f4xx_adc.h(58): warning: padding struct 'ADC_InitTypeDef' with 2 bytes to align 'ADC_ExternalTrigConvEdge' [-Wpadded]
+   58 |   uint32_t ADC_ExternalTrigConvEdge;      /*!< Select the external trigger edge and
+      |            ^
+./stm32f4xx_adc.h(47): warning: padding size of 'ADC_InitTypeDef' with 3 bytes to alignment boundary [-Wpadded]
+   47 | typedef struct
+      |         ^
+2 warnings generated.
+compiling stm32f4xx_adc.c...
 stm32f4xx_gpio.c(525): warning: unsafe buffer access [-Wunsafe-buffer-usage]
   525 |   GPIOx->AFR[GPIO_PinSource >> 0x03] &= ~((uint32_t)0xF << ((uint32_t)((uint32_t)GPIO_PinSource & (uint32_t)0x07) * 4)) ;
       |   ^~~~~~~~~~
@@ -603,35 +603,6 @@ stm32f4xx_i2c.c(815): warning: implicit conversion loses integer precision: 'uin
       |   ~~~~~~  ~~~~~~~~~~~~^~~~
 5 warnings generated.
 compiling stm32f4xx_i2c.c...
-stm32f4xx_rcc.c(677): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-  677 |    @note When VOS bit (in PWR_CR register) is reset to '0<92>, the maximum value of HCLK is 144 MHz.
-      |                                                          ^
-stm32f4xx_rcc.c(917): warning: unsafe buffer access [-Wunsafe-buffer-usage]
-  917 |   presc = APBAHBPrescTable[tmp];
-      |           ^~~~~~~~~~~~~~~~
-stm32f4xx_rcc.c(924): warning: unsafe buffer access [-Wunsafe-buffer-usage]
-  924 |   presc = APBAHBPrescTable[tmp];
-      |           ^~~~~~~~~~~~~~~~
-stm32f4xx_rcc.c(931): warning: unsafe buffer access [-Wunsafe-buffer-usage]
-  931 |   presc = APBAHBPrescTable[tmp];
-      |           ^~~~~~~~~~~~~~~~
-4 warnings generated.
-compiling stm32f4xx_rcc.c...
-stm32f4xx_usart.c(86): warning: In file included from...
-./stm32f4xx_usart.h(48): warning: padding size of 'USART_InitTypeDef' with 2 bytes to alignment boundary [-Wpadded]
-   48 | typedef struct
-      |         ^
-stm32f4xx_usart.c(434): warning: unused parameter 'USARTx' [-Wunused-parameter]
-  434 | void USART_SetPrescaler(USART_TypeDef* USARTx, uint8_t USART_Prescaler)
-      |                                        ^
-stm32f4xx_usart.c(434): warning: unused parameter 'USART_Prescaler' [-Wunused-parameter]
-  434 | void USART_SetPrescaler(USART_TypeDef* USARTx, uint8_t USART_Prescaler)
-      |                                                        ^
-stm32f4xx_usart.c(1443): warning: implicit conversion loses integer precision: 'int' to 'uint16_t' (aka 'unsigned short') [-Wimplicit-int-conversion]
- 1443 |   itmask = ((uint16_t)0x01 << (uint16_t)bitpos);
-      |          ~  ~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~
-4 warnings generated.
-compiling stm32f4xx_usart.c...
 timer.c(1): warning: In file included from...
 ./platform.h(18): warning: non-portable path to file '<stm32f4xx.h>'; specified path differs in case from file name on disk [-Wnonportable-include-path]
    18 | #include <STM32F4xx.h>
@@ -662,6 +633,35 @@ timer.c(4): note: declare 'static' if the variable is not intended to be used ou
       | ^
 6 warnings generated.
 compiling timer.c...
+stm32f4xx_rcc.c(677): warning: invalid UTF-8 in comment [-Winvalid-utf8]
+  677 |    @note When VOS bit (in PWR_CR register) is reset to '0<92>, the maximum value of HCLK is 144 MHz.
+      |                                                          ^
+stm32f4xx_rcc.c(917): warning: unsafe buffer access [-Wunsafe-buffer-usage]
+  917 |   presc = APBAHBPrescTable[tmp];
+      |           ^~~~~~~~~~~~~~~~
+stm32f4xx_rcc.c(924): warning: unsafe buffer access [-Wunsafe-buffer-usage]
+  924 |   presc = APBAHBPrescTable[tmp];
+      |           ^~~~~~~~~~~~~~~~
+stm32f4xx_rcc.c(931): warning: unsafe buffer access [-Wunsafe-buffer-usage]
+  931 |   presc = APBAHBPrescTable[tmp];
+      |           ^~~~~~~~~~~~~~~~
+4 warnings generated.
+compiling stm32f4xx_rcc.c...
+stm32f4xx_usart.c(86): warning: In file included from...
+./stm32f4xx_usart.h(48): warning: padding size of 'USART_InitTypeDef' with 2 bytes to alignment boundary [-Wpadded]
+   48 | typedef struct
+      |         ^
+stm32f4xx_usart.c(434): warning: unused parameter 'USARTx' [-Wunused-parameter]
+  434 | void USART_SetPrescaler(USART_TypeDef* USARTx, uint8_t USART_Prescaler)
+      |                                        ^
+stm32f4xx_usart.c(434): warning: unused parameter 'USART_Prescaler' [-Wunused-parameter]
+  434 | void USART_SetPrescaler(USART_TypeDef* USARTx, uint8_t USART_Prescaler)
+      |                                                        ^
+stm32f4xx_usart.c(1443): warning: implicit conversion loses integer precision: 'int' to 'uint16_t' (aka 'unsigned short') [-Wimplicit-int-conversion]
+ 1443 |   itmask = ((uint16_t)0x01 << (uint16_t)bitpos);
+      |          ~  ~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~
+4 warnings generated.
+compiling stm32f4xx_usart.c...
 uart.c(1): warning: In file included from...
 ./platform.h(18): warning: non-portable path to file '<stm32f4xx.h>'; specified path differs in case from file name on disk [-Wnonportable-include-path]
    18 | #include <STM32F4xx.h>
@@ -740,14 +740,14 @@ dht.c(86): warning: unsafe buffer access [-Wunsafe-buffer-usage]
    86 |         if (bytes[4] != ((bytes[0] + bytes[1] + bytes[2] + bytes[3]) & 0xFF)) {
       |                                                            ^~~~~
 dht.c(89): warning: unsafe buffer access [-Wunsafe-buffer-usage]
-   89 |         *humidity = (float)(bytes[0]*256 + bytes[1]) / 10.0f;
-      |                                            ^~~~~
+   89 |         *humidity = (float)(bytes[0] + bytes[1]/10.f);
+      |                                        ^~~~~
 dht.c(90): warning: unsafe buffer access [-Wunsafe-buffer-usage]
-   90 |         *temperature = (float)(bytes[2]*256 + bytes[3]) / 10.0f;
+   90 |         *temperature = (float)(bytes[2] + bytes[3]/10.f);
       |                                ^~~~~
 dht.c(90): warning: unsafe buffer access [-Wunsafe-buffer-usage]
-   90 |         *temperature = (float)(bytes[2]*256 + bytes[3]) / 10.0f;
-      |                                               ^~~~~
+   90 |         *temperature = (float)(bytes[2] + bytes[3]/10.f);
+      |                                           ^~~~~
 13 warnings generated.
 compiling dht.c...
 tim.c(2): warning: In file included from...
@@ -839,7 +839,7 @@ RTE/Device/STM32F411RETx/system_stm32f4xx.c(263): warning: unsafe buffer access 
 1 warning generated.
 compiling system_stm32f4xx.c...
 linking...
-Program Size: Code=16804 RO-data=1156 RW-data=8 ZI-data=1720  
+Program Size: Code=16844 RO-data=1140 RW-data=8 ZI-data=1720  
 ".\Objects\lab1.axf" - 0 Error(s), 175 Warning(s).
 
 <h2>Software Packages used:</h2>
@@ -884,11 +884,11 @@ Package Vendor: Keil
 
    * Component: Keil::Device:Startup@2.6.3
       Source file:   MDK/Device/Source/ARM/STM32F411xx_OPT.s
+      Source file:   MDK/Device/Source/ARM/STM32F4xx_OTP.s
       Source file:   Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/arm/startup_stm32f411xe.s
       Include file:  Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h
-      Source file:   MDK/Device/Source/ARM/STM32F4xx_OTP.s
       Source file:   Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/system_stm32f4xx.c
-Build Time Elapsed:  00:00:04
+Build Time Elapsed:  00:00:12
 </pre>
 </body>
 </html>

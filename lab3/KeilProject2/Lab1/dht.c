@@ -86,7 +86,7 @@ uint8_t ReadDHT11(Pin pin, float *temperature, float *humidity) {
 	if (bytes[4] != ((bytes[0] + bytes[1] + bytes[2] + bytes[3]) & 0xFF)) {
 		return 0; // Byte validation failed
 	}
-	*humidity = (float)(bytes[0]*256 + bytes[1]) / 10.0f;
-	*temperature = (float)(bytes[2]*256 + bytes[3]) / 10.0f;
+	*humidity = (float)(bytes[0] + bytes[1]/10.f);
+	*temperature = (float)(bytes[2] + bytes[3]/10.f);
 	return 1;
 }
