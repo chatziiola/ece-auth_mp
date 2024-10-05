@@ -15,7 +15,7 @@ The code in this repository was developed by:
 - Lamprinos Chatziioannou
 
 # Description
-Essentially this repository tracks our teams approach to the microprocessors course, taught by professor [Ioannis Papaefstathiou](https://ece.auth.gr/staff/ioannis-papaefstathiou-2/), during the 8th semester of the E.C.E. A.U.Th. study program.
+Essentially this repository tracks our team's approach to the microprocessors course, taught by professor [Ioannis Papaefstathiou](https://ece.auth.gr/staff/ioannis-papaefstathiou-2/), during the 8th semester of the E.C.E. A.U.Th. study program.
 
 There is also a folder with notes and helpful material ([check it out](notes))
 
