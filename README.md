@@ -1,6 +1,4 @@
 # Microprocessors
-![Successfully graded](https://img.shields.io/badge/Successfully_graded-%E2%9C%94%EF%B8%8F-green) 
-![Course Passed](https://img.shields.io/badge/Course_passed-%E2%9C%94%EF%B8%8F-green) 
 [![ARM Icon](https://img.shields.io/badge/ARM-0091BD?style=flat&logo=arm&logoColor=white)](https://developer.arm.com/documentation/)
 [![Assembly Icon](https://img.shields.io/badge/Assembly-000000?style=flat&logo=assemblyscript&logoColor=white)](https://en.wikipedia.org/wiki/Assembly_language)
 [![C Icon](https://img.shields.io/badge/C-A8B9CC?style=flat&logo=c&logoColor=white)](https://en.wikipedia.org/wiki/C_(programming_language))
@@ -17,11 +15,12 @@ The code in this repository was developed by:
 - Lamprinos Chatziioannou
 
 # Description
-Essentially this repository tracks our teams approach to the microprocessors course, during the 8th semester of the E.C.E. A.U.Th. study program.
+Essentially this repository tracks our teams approach to the microprocessors course, taught by professor [Ioannis Papaefstathiou](https://ece.auth.gr/staff/ioannis-papaefstathiou-2/), during the 8th semester of the E.C.E. A.U.Th. study program.
+
+There is also a folder with notes and helpful material ([check it out](notes))
 
 # Contents
 - [Lab 1](lab1): This was about writing in assembly, utilizing assembly within c and using UART to print information.
-
-- [Lab 2](lab2)
+- [Lab 2](lab2): This was about reading input through UART and handling interrupts through customized ISRs.
 - [Lab 3](lab3)
 
