@@ -22,5 +22,5 @@ There is also a folder with notes and helpful material ([check it out](notes))
 # Contents
 - [Lab 1](lab1): This was about writing in assembly, utilizing assembly within c and using UART to print information.
 - [Lab 2](lab2): This was about reading input through UART and handling interrupts through customized ISRs.
-- [Lab 3](lab3)
+- [Lab 3](lab3): Building on the previous labs, this was about using ISRs, and UART to collect temperature information from the given sensor. The behaviour was affected by user input.
 
